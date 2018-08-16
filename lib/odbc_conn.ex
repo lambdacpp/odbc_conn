@@ -38,5 +38,10 @@ defmodule OdbcConn do
     {:selected, _header, rec} = execute_sql(sql_string)
     Enum.map( rec ,fn e -> e |> Tuple.to_list |>hd |> to_string end)
   end
-  
+
+  defmacro __using__(_opts) do
+    quote do
+      import OdbcConn.Helper
+    end
+  end
 end
